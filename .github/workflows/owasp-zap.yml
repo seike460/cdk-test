@@ -13,7 +13,7 @@ jobs:
 
       - name: Start ZAP Scan
         run: |
-          docker run -t owasp/zap2docker zap-baseline.py -t https://4ar9o6xw7e.execute-api.us-east-1.amazonaws.com/prod/ -r zap_report.html
+          docker run -t securecodebox/zap zap-baseline.py -t https://4ar9o6xw7e.execute-api.us-east-1.amazonaws.com/prod/ -r zap_report.html
         env:
           DISPLAY: :0
 
