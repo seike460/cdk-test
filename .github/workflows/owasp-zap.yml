@@ -1,0 +1,21 @@
+name: "OWASP ZAP Security Scan"
+on: [push]
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start ZAP Scan
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py -t https://4ar9o6xw7e.execute-api.us-east-1.amazonaws.com/prod/ -r zap_report.html
+        env:
+          DISPLAY: :0
+
+      - name: Upload ZAP Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-report
+          path: zap_report.html
